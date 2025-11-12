@@ -1,0 +1,32 @@
+{
+  "name": "@dorilama/virtual-byos",
+  "version": "0.0.0",
+  "description": "Tanstack Virtual adapted for multiple signals",
+  "keywords": [
+    "signals",
+    "virtual"
+  ],
+  "author": "dorilama",
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "files": [
+    "src"
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "publish-package": "npm publish --access public"
+  },
+  "type": "module"
+}
