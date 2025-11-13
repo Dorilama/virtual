@@ -1,5 +1,9 @@
 import { HKT, Kind, MaybeSignal, SignalFunctions } from "@dorilama/byos";
-import { VirtualizerOptions, Virtualizer } from "@tanstack/virtual-core";
+import {
+  PartialKeys,
+  VirtualizerOptions,
+  Virtualizer,
+} from "@tanstack/virtual-core";
 
 export { MaybeSignal, SignalFunctions } from "@dorilama/byos";
 
@@ -46,6 +50,27 @@ export type UseVirtualizerBase = <
     SignalHKT,
     ComputedHKT,
     VirtualizerOptions<TScrollElement, TItemElement>
+  >
+) => {
+  virtualizer: Virtualizer<TScrollElement, TItemElement>;
+  state: Kind<SignalHKT, State<TScrollElement, TItemElement>>;
+  cleanup: () => void;
+};
+
+export type UseVirtualizer = <
+  SignalHKT extends HKT,
+  ComputedHKT extends HKT,
+  TScrollElement extends Element,
+  TItemElement extends Element
+>(
+  signalFunctions: SignalFunctions<SignalHKT, ComputedHKT>,
+  options: MaybeSignal<
+    SignalHKT,
+    ComputedHKT,
+    PartialKeys<
+      VirtualizerOptions<TScrollElement, TItemElement>,
+      "observeElementRect" | "observeElementOffset" | "scrollToFn"
+    >
   >
 ) => {
   virtualizer: Virtualizer<TScrollElement, TItemElement>;

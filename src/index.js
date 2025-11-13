@@ -32,7 +32,7 @@ function getState(virtualizer) {
  *
  * @type {import(".").UseVirtualizerBase}
  */
-export function useVirtualizerBase(fns, options) {
+function useVirtualizerBase(fns, options) {
   const virtualizer = new Virtualizer(fns.toValue(options));
   const state = fns.signal(getState(virtualizer));
 
@@ -71,4 +71,21 @@ export function useVirtualizerBase(fns, options) {
       stopOptionsEffect();
     },
   };
+}
+
+/**
+ *
+ * @type {import(".").UseVirtualizer}
+ */
+export function useVirtualizer(fns, options) {
+  const opt = fns.computed(() => {
+    const o = fns.toValue(options);
+    return {
+      observeElementRect: observeElementRect,
+      observeElementOffset: observeElementOffset,
+      scrollToFn: elementScroll,
+      ...o,
+    };
+  }, [options]);
+  return useVirtualizerBase(fns, opt);
 }
