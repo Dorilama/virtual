@@ -28,5 +28,9 @@
   "scripts": {
     "publish-package": "npm publish --access public"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@dorilama/byos": "file:../byos",
+    "@tanstack/virtual-core": "^3.13"
+  }
 }
