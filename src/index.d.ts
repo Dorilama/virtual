@@ -60,7 +60,8 @@ export type UseVirtualizerBase = <
     SignalHKT,
     ComputedHKT,
     VirtualizerOptions<TScrollElement, TItemElement>
-  >
+  >,
+  scrollElementDeps: MaybeSignal<SignalHKT, ComputedHKT, unknown>[]
 ) => UseVirtualizerReturn<SignalHKT, TScrollElement, TItemElement>;
 
 export declare function useVirtualizer<
@@ -77,7 +78,8 @@ export declare function useVirtualizer<
       VirtualizerOptions<TScrollElement, TItemElement>,
       "observeElementRect" | "observeElementOffset" | "scrollToFn"
     >
-  >
+  >,
+  scrollElementDeps: MaybeSignal<SignalHKT, ComputedHKT, unknown>[]
 ): UseVirtualizerReturn<SignalHKT, TScrollElement, TItemElement>;
 
 export declare function useWindowVirtualizer<
@@ -96,5 +98,6 @@ export declare function useWindowVirtualizer<
       | "scrollToFn"
       | "getScrollElement"
     >
-  >
+  >,
+  scrollElementDeps: MaybeSignal<SignalHKT, ComputedHKT, unknown>[]
 ): UseVirtualizerReturn<SignalHKT, Window, TItemElement>;

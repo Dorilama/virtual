@@ -4,14 +4,6 @@ import { signalFunctions } from "@dorilama/byos/@preact-signals";
 import { useVirtualizer } from "@dorilama/virtual-byos";
 import "./app.css";
 
-const scrollElement = signal<HTMLDivElement | null>(null);
-const { virtualizer, state, cleanup } = useVirtualizer(signalFunctions, {
-  count: 10000,
-  getScrollElement: () => scrollElement.value,
-  estimateSize: () => 35,
-  overscan: 5,
-});
-
 export function App() {
   const show = useSignal(true);
   return (
@@ -22,6 +14,7 @@ export function App() {
           type="checkbox"
           name="show"
           onClick={() => (show.value = !show.value)}
+          checked={show.value}
         />
         show
       </label>
@@ -33,12 +26,31 @@ export function App() {
 
 function RowVirtualizer() {
   const parentRef = useRef<HTMLDivElement | null>(null);
+  const scrollElement = signal<HTMLDivElement | null>(null);
+  const virtualizer = useSignal(
+    useVirtualizer(
+      signalFunctions,
+      {
+        count: 10000,
+        getScrollElement: () => scrollElement.value,
+        estimateSize: () => 35,
+        overscan: 5,
+      },
+      [scrollElement]
+    )
+  );
+
+  const state = virtualizer.value.state;
+  const cleanup = virtualizer.value.cleanup;
 
   useEffect(() => {
     scrollElement.value = parentRef.current;
   }, [parentRef]);
   useEffect(() => {
-    return cleanup;
+    return () => {
+      console.log("cleanup");
+      cleanup();
+    };
   }, []);
 
   return (

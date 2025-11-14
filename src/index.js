@@ -32,14 +32,14 @@ function getState(virtualizer) {
  *
  * @type {import(".").UseVirtualizerBase}
  */
-function useVirtualizerBase(fns, options) {
+function useVirtualizerBase(fns, options, scrollElementDeps) {
   const virtualizer = new Virtualizer(fns.toValue(options));
   const state = fns.signal(getState(virtualizer));
 
   const cleanup = virtualizer._didMount();
   const scrollElement = fns.computed(
     () => fns.toValue(options).getScrollElement(),
-    [options]
+    [options, ...scrollElementDeps]
   );
 
   const stopElementEffect = fns.effect(() => {
@@ -77,7 +77,7 @@ function useVirtualizerBase(fns, options) {
  *
  * @type {import(".").useVirtualizer}
  */
-export function useVirtualizer(fns, options) {
+export function useVirtualizer(fns, options, scrollElementDeps) {
   const opt = fns.computed(() => {
     const o = fns.toValue(options);
     return {
@@ -87,14 +87,14 @@ export function useVirtualizer(fns, options) {
       ...o,
     };
   }, [options]);
-  return useVirtualizerBase(fns, opt);
+  return useVirtualizerBase(fns, opt, scrollElementDeps);
 }
 
 /**
  *
  * @type {import(".").useWindowVirtualizer}
  */
-export function useWindowVirtualizer(fns, options) {
+export function useWindowVirtualizer(fns, options, scrollElementDeps) {
   const opt = fns.computed(() => {
     const o = fns.toValue(options);
     return {
@@ -107,5 +107,5 @@ export function useWindowVirtualizer(fns, options) {
       ...o,
     };
   }, [options]);
-  return useVirtualizerBase(fns, fns.toValue(opt));
+  return useVirtualizerBase(fns, fns.toValue(opt), scrollElementDeps);
 }
