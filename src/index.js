@@ -75,7 +75,7 @@ function useVirtualizerBase(fns, options) {
 
 /**
  *
- * @type {import(".").UseVirtualizer}
+ * @type {import(".").useVirtualizer}
  */
 export function useVirtualizer(fns, options) {
   const opt = fns.computed(() => {
@@ -92,7 +92,7 @@ export function useVirtualizer(fns, options) {
 
 /**
  *
- * @type {import(".").UseWindowVirtualizer}
+ * @type {import(".").useWindowVirtualizer}
  */
 export function useWindowVirtualizer(fns, options) {
   const opt = fns.computed(() => {

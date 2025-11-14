@@ -63,7 +63,7 @@ export type UseVirtualizerBase = <
   >
 ) => UseVirtualizerReturn<SignalHKT, TScrollElement, TItemElement>;
 
-export type UseVirtualizer = <
+export declare function useVirtualizer<
   SignalHKT extends HKT,
   ComputedHKT extends HKT,
   TScrollElement extends Element,
@@ -78,9 +78,9 @@ export type UseVirtualizer = <
       "observeElementRect" | "observeElementOffset" | "scrollToFn"
     >
   >
-) => UseVirtualizerReturn<SignalHKT, TScrollElement, TItemElement>;
+): UseVirtualizerReturn<SignalHKT, TScrollElement, TItemElement>;
 
-export type UseWindowVirtualizer = <
+export declare function useWindowVirtualizer<
   SignalHKT extends HKT,
   ComputedHKT extends HKT,
   TItemElement extends Element
@@ -97,4 +97,4 @@ export type UseWindowVirtualizer = <
       | "getScrollElement"
     >
   >
-) => UseVirtualizerReturn<SignalHKT, Window, TItemElement>;
+): UseVirtualizerReturn<SignalHKT, Window, TItemElement>;
