@@ -39,6 +39,16 @@ export type GetState = <
   virtualizer: Virtualizer<TScrollElement, TItemElement>
 ) => State<TScrollElement, TItemElement>;
 
+type UseVirtualizerReturn<
+  SignalHKT extends HKT,
+  TScrollElement extends Element | Window,
+  TItemElement extends Element
+> = {
+  virtualizer: Virtualizer<TScrollElement, TItemElement>;
+  state: Kind<SignalHKT, State<TScrollElement, TItemElement>>;
+  cleanup: () => void;
+};
+
 export type UseVirtualizerBase = <
   SignalHKT extends HKT,
   ComputedHKT extends HKT,
@@ -51,11 +61,7 @@ export type UseVirtualizerBase = <
     ComputedHKT,
     VirtualizerOptions<TScrollElement, TItemElement>
   >
-) => {
-  virtualizer: Virtualizer<TScrollElement, TItemElement>;
-  state: Kind<SignalHKT, State<TScrollElement, TItemElement>>;
-  cleanup: () => void;
-};
+) => UseVirtualizerReturn<SignalHKT, TScrollElement, TItemElement>;
 
 export type UseVirtualizer = <
   SignalHKT extends HKT,
@@ -72,8 +78,23 @@ export type UseVirtualizer = <
       "observeElementRect" | "observeElementOffset" | "scrollToFn"
     >
   >
-) => {
-  virtualizer: Virtualizer<TScrollElement, TItemElement>;
-  state: Kind<SignalHKT, State<TScrollElement, TItemElement>>;
-  cleanup: () => void;
-};
+) => UseVirtualizerReturn<SignalHKT, TScrollElement, TItemElement>;
+
+export type UseWindowVirtualizer = <
+  SignalHKT extends HKT,
+  ComputedHKT extends HKT,
+  TItemElement extends Element
+>(
+  signalFunctions: SignalFunctions<SignalHKT, ComputedHKT>,
+  options: MaybeSignal<
+    SignalHKT,
+    ComputedHKT,
+    PartialKeys<
+      VirtualizerOptions<Window, TItemElement>,
+      | "observeElementRect"
+      | "observeElementOffset"
+      | "scrollToFn"
+      | "getScrollElement"
+    >
+  >
+) => UseVirtualizerReturn<SignalHKT, Window, TItemElement>;

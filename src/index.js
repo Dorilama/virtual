@@ -89,3 +89,23 @@ export function useVirtualizer(fns, options) {
   }, [options]);
   return useVirtualizerBase(fns, opt);
 }
+
+/**
+ *
+ * @type {import(".").UseWindowVirtualizer}
+ */
+export function useWindowVirtualizer(fns, options) {
+  const opt = fns.computed(() => {
+    const o = fns.toValue(options);
+    return {
+      getScrollElement: () => (typeof document !== "undefined" ? window : null),
+      observeElementRect: observeWindowRect,
+      observeElementOffset: observeWindowOffset,
+      scrollToFn: windowScroll,
+      initialOffset: () =>
+        typeof document !== "undefined" ? window.scrollY : 0,
+      ...o,
+    };
+  }, [options]);
+  return useVirtualizerBase(fns, fns.toValue(opt));
+}
