@@ -10,8 +10,7 @@
     "paths": {
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"],
-      "@dorilama/virtual-byos": ["../../../src"],
-      "@dorilama/byos": ["../../../../byos"]
+      "@dorilama/virtual-byos": ["../../../src"]
     },
 
     /* Bundler mode */

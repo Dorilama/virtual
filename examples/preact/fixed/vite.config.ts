@@ -8,7 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@dorilama/virtual-byos": path.resolve(__dirname, "../../../src"),
-      "@dorilama/byos": path.resolve(__dirname, "../../../../byos/src"),
     },
   },
 });

@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dorilama/byos": "^0.1.0",
+    "@dorilama/virtual-byos": "file:../..",
     "@preact/signals": "^2.5.0",
     "preact": "^10.27.2"
   },

@@ -1,14 +1,19 @@
 /* @refresh reset */
 import { useRef, useEffect } from "preact/hooks";
 import { signal, useSignal } from "@preact/signals";
-import { signalFunctions } from "@dorilama/byos/@preact-signals";
+import {
+  signalFunctions,
+  type SignalHKT,
+  type ComputedHKT,
+} from "@dorilama/byos/@preact-signals";
 import { useVirtualizer } from "@dorilama/virtual-byos";
 
 export default function RowVirtualizer() {
   const parentRef = useRef<HTMLDivElement | null>(null);
   const scrollElement = signal<HTMLDivElement | null>(null);
+
   const virtualizer = useSignal(
-    useVirtualizer(
+    useVirtualizer<SignalHKT, ComputedHKT, Element, Element>(
       signalFunctions,
       {
         count: 10000,
@@ -27,7 +32,12 @@ export default function RowVirtualizer() {
     scrollElement.value = parentRef.current;
   }, [parentRef]);
   useEffect(() => {
-    virtualizer.value = useVirtualizer(
+    virtualizer.value = useVirtualizer<
+      SignalHKT,
+      ComputedHKT,
+      Element,
+      Element
+    >(
       signalFunctions,
       {
         count: 10000,
