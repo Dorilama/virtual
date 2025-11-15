@@ -1,3 +1,1 @@
-# bring your own signal
-
-Single interface for multiple signals
+[TanStack/virtual](https://github.com/TanStack/virtual) adapted to work with multiple signals.

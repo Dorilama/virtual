@@ -30,7 +30,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@dorilama/byos": "file:../byos",
+    "@dorilama/byos": "^0.1.0",
     "@tanstack/virtual-core": "^3.13"
   }
 }
