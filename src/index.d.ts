@@ -5,6 +5,8 @@ import {
   Virtualizer,
 } from "@tanstack/virtual-core";
 
+export * from "@tanstack/virtual-core";
+
 export { MaybeSignal, SignalFunctions } from "@dorilama/byos";
 
 export type StateProps = [
