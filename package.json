@@ -20,10 +20,10 @@
   "files": [
     "src"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/Dorilama/virtual-byos",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Dorilama/virtual-byos.git"
   },
   "scripts": {
     "publish-package": "npm publish --access public"
